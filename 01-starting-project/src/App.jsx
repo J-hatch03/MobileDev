@@ -1,7 +1,7 @@
 import { useState } from "react";
 import componentsImg from "./assets/components.png";
 import { CORE_CONCEPTS } from "./data.js";
-
+import { EXAMPLES } from "./data.js";
 import Header from "./Components/Header.jsx";
 import CoreConcept from "./Components/CoreConcept.jsx";
 import TabButton from "./Components/TabButton.jsx";
@@ -14,7 +14,7 @@ function App() {
 
   console.log("App rendering...")
 
-  const [selectedTopic, setSelectedTopic] = useState("Please press a button");
+  const [selectedTopic, setSelectedTopic] = useState("");
 
 
 
@@ -57,15 +57,29 @@ function App() {
         </section>
         <section id="examples">
         <menu>
-          <TabButton onSelect={() => handleSelect("Components")} isSelected={selectedTopic === "Components"}> Components </TabButton>
-          <TabButton onSelect={() => handleSelect("JSX")} isSelected={selectedTopic === "JSX"}> JSX </TabButton>
-          <TabButton onSelect={() => handleSelect("Props")} isSelected={selectedTopic === "Props"}> Props </TabButton>
-          <TabButton onSelect={() => handleSelect("State")} isSelected={selectedTopic === "State"}> State </TabButton>
+          <TabButton onSelect={() => handleSelect("components")} isSelected={selectedTopic === "components"}> Components </TabButton>
+          <TabButton onSelect={() => handleSelect("jsx")} isSelected={selectedTopic === "jsx"}> JSX </TabButton>
+          <TabButton onSelect={() => handleSelect("props")} isSelected={selectedTopic === "props"}> Props </TabButton>
+          <TabButton onSelect={() => handleSelect("state")} isSelected={selectedTopic === "state"}> State </TabButton>
         </menu>
         </section>
       </main>
+      { selectedTopic ? (
+        <div id="tab-content">
+          <h3> {EXAMPLES[selectedTopic].title} </h3>
+          <p> {EXAMPLES[selectedTopic].description} </p>
+          <pre>
+            <code> {EXAMPLES[selectedTopic].code} </code>
+          </pre>
+        </div>
+      ) : (
+        <div id="tap-content"> 
+          <p>please select a topic</p> 
+        </div>
+      )}
     </div>
   );
 }
 
 export default App;
+
