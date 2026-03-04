@@ -6,13 +6,17 @@ import GameScreen from "./screens/GameScreen";
 import GameOverScreen from "./screens/GameOverScreen";
 import { LinearGradient } from "expo-linear-gradient";
 import Colors from "./constants/colors";
+import { useFonts } from "expo-font";
 
 
 export default function App() {
   const [userNumber, setUserNumber] = useState();
-
+  
   const[gameIsOver, setGameIsOver] = useState(true);
 
+  useFonts({});
+  
+  console.log(userNumber)
   function pickedNumberHandler(pickedNumber) {
     setUserNumber(pickedNumber)
     setGameIsOver(false);
